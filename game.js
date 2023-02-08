@@ -5,9 +5,12 @@ function nextSequence() {
     var x = Math.random()*4;
     x = Math.floor(x);
 
-    gamePattern.push( buttonColours[x] );
+    var topColor = buttonColours[x];
+    gamePattern.push( topColor );
 
-    buttonFlashAnimation( buttonColours[x] );
+    buttonFlashAnimation( topColor );
+
+    playAudio( topColor);
 
 }
 
@@ -20,3 +23,8 @@ function buttonFlashAnimation( color ){
     $("."+color).fadeOut(100).fadeIn();
 }
 
+function playAudio( color ) {
+var audio = new Audio("sounds/" + color +".mp3");
+audio.play();
+    
+}
