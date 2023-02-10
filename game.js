@@ -2,10 +2,12 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern  = [];
 var gameLevel = 0;
 var userClickedPattern = [];
+var started = false ;
 
 $(document).keypress( function (){
-    if ( gameLevel == 0){
+    if ( gameLevel == 0 && started == false){
         nextSequence();
+        started = true ;
     }
 });
 
@@ -20,6 +22,9 @@ $(".btn").click(function (){
 function nextSequence() {
     var x = Math.random()*4;
     x = Math.floor(x);
+
+    gameLevel++;
+    $("h1").text("Level " + gameLevel);
 
     var topColor = buttonColours[x];
     gamePattern.push( topColor );
