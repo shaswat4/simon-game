@@ -3,6 +3,7 @@ var gamePattern  = [];
 var gameLevel = 0;
 var userClickedPattern = [];
 var started = false ;
+var iter  = 0 ;
 
 $(document).keypress( function (){
     if ( gameLevel == 0 && started == false){
@@ -17,6 +18,8 @@ $(".btn").click(function (){
     animatePress(userChosenColor);
     console.log(userChosenColor);
     userClickedPattern.push(userChosenColor);
+
+    checkAnswer( iter );
 });
 
 function nextSequence() {
@@ -32,8 +35,26 @@ function nextSequence() {
     buttonFlashAnimation( topColor );
     playAudio( topColor);
 
+    iter = 0 ;
+    userClickedPattern = [] ;
+
 }
 
+function checkAnswer( index ){
+    
+    if (gamePattern[index] == userClickedPattern[index] ) {
+        console.log("success");
+    } else {
+        console.log("wrong");
+    }
+
+    if ( gamePattern.length == userClickedPattern.length ){
+        setTimeout (nextSequence , 1000);
+        
+    }
+
+
+}
 
 // console.log(randColor);
 
