@@ -51,7 +51,7 @@ function checkAnswer( index ){
 
     iter++;
 
-    if ( gamePattern.length == userClickedPattern.length ){
+    if ( gamePattern.length == userClickedPattern.length && started == true){
         setTimeout (nextSequence , 1000);
         
     }
@@ -66,9 +66,18 @@ function wrongAnswer() {
     setTimeout( function () {
         $("body").toggleClass("game-over");
     } , 200);
+    startOver();
 }
 
 // console.log(randColor);
+
+function startOver(){
+    iter = 0 ;
+    started =false ;
+    gameLevel= 0 ;
+    gamePattern = [];
+    userClickedPattern = [];
+}
 
 function buttonFlashAnimation( color ){
     $("."+color).fadeOut(100).fadeIn();
