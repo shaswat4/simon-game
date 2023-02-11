@@ -46,7 +46,10 @@ function checkAnswer( index ){
         console.log("success");
     } else {
         console.log("wrong");
+        wrongAnswer();
     }
+
+    iter++;
 
     if ( gamePattern.length == userClickedPattern.length ){
         setTimeout (nextSequence , 1000);
@@ -54,6 +57,15 @@ function checkAnswer( index ){
     }
 
 
+}
+
+function wrongAnswer() {
+    playAudio('wrong');
+    $("body").toggleClass("game-over");
+    $("#level-title").text("Game Over, Press Any Key to Restart");
+    setTimeout( function () {
+        $("body").toggleClass("game-over");
+    } , 200);
 }
 
 // console.log(randColor);
